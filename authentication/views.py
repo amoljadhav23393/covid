@@ -156,8 +156,8 @@ def plot_bar_chart(covid_data):
 
         if 'images' not in os.listdir(project_dir):
             os.mkdir(project_dir+'/images')
-        fig.write_image(project_dir+"/images/fig1.png")
-        fig.show()
+        fig.write_image(project_dir+"/images/"+covid_data.get("data").get("name").lower()+".png")
+        # fig.show()
     except Exception as e:
         print(e)
 
@@ -200,7 +200,7 @@ def send_email_attachment(user_email,country,days):
         #The subject line
         #The body and the attachments for the mail
         message.attach(MIMEText(mail_content, 'plain'))
-        attach_file_name = project_dir+"/images/fig1.png"
+        attach_file_name = project_dir+"/images/"+country.lower()+".png"
         img_data = open(attach_file_name, 'rb').read()
         image = MIMEImage(img_data, name=os.path.basename(attach_file_name))
         message.attach(image)
